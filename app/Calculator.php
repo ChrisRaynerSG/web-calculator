@@ -7,34 +7,34 @@ class Calculator{
     private $numberOne;
     private $numberTwo;
     private $numberCalculated;
-    private $operator;
+    private $operator = "initial";
 
 
-    private function add($x, $y) : float
+    private function add() : float
     {
-        return $x + $y;
+        return $this->numberOne + $this->numberTwo;
     }
 
-    private function subtract($x, $y) : float
+    private function subtract() : float
     {
-        return $x - $y;
+        return $this->numberOne - $this->numberTwo;
     }
 
-    private function multiply($x, $y) : float
+    private function multiply() : float
     {
-        return $x * $y;
+        return $this->numberOne * $this->numberTwo;
     }
 
-    private function divide($x, $y) : float
+    private function divide() : float
     {
-        if($y === 0)
+        if($this->numberTwo === 0)
         {
             echo "ARITHMETIC ERR: Cannot divide by 0!";
             return 0;
         }
         else
         {
-            return $x / $y;
+            return $this->numberOne / $this->numberTwo;
         }
     }
 
@@ -53,26 +53,26 @@ class Calculator{
     {
         switch($operator)
         {
-            case "addition" : $this->operator = "addition";
-            case "subtraction": $this->operator = "subtraction";
-            case "multiplication": $this->operator = "multiplication";
-            case "division" : $this->operator = "division";
+            case "addition" : $this->operator = "addition"; break;
+            case "subtraction": $this->operator = "subtraction"; break;
+            case "multiplication": $this->operator = "multiplication"; break;
+            case "division" : $this->operator = "division"; break;
         }
     }
 
     public function calculate()
     {
-        switch($operator)
+        switch($this->operator)
         {
-            case "addition": $this->numberCalculated = divide();
-            case "subtraction": $this->numberCalculated = subtract();
-            case "multiplication": $this->numberCalculated = multiply();
-            case "division": $this->numberCalculated = divide();
+            case "addition": $this->numberCalculated = $this->add(); break;
+            case "subtraction": $this->numberCalculated = $this->subtract(); break;
+            case "multiplication": $this->numberCalculated = $this->multiply(); break;
+            case "division": $this->numberCalculated = $this->divide(); break;
         }
-        $this->numberOne = $numberCalculated;
+        $this->numberOne = $this->numberCalculated;
         $this->numberTwo = 0;
         $this->operator = "initial";
-        return $numberCalculated;
+        return $this->numberCalculated;
     }
 
     public function clear(){
